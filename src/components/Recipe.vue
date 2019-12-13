@@ -1,14 +1,11 @@
 <template>
-  <div class="hello">
-    <h1>Meal Planner</h1>
-    <button @click="callFoods">Recipes</button>
+  <div>
   </div>
 </template>
 
 <script>
-import { getFoods } from '../apis';
+import { getFoods } from '../services/recipeApis';
 export default {
-  name: 'HelloWorld',
   methods: {
     callFoods: function() {
       console.log(getFoods());

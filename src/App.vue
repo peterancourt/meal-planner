@@ -1,27 +1,43 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <Heading/>
+    <Search @searchTermEvent="getRecipes"/>
+    <Recipe/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Recipe from './components/Recipe.vue';
+import Search from './components/Search.vue';
+import Heading from './components/Heading.vue';
+import { getFoods } from './services/recipeApis';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    data() {
+        return {
+            
+        }
+    }, 
+    components: {
+        Recipe,
+        Search,
+        Heading
+    },
+    methods: {
+        getRecipes(value) {
+            const recipeData = getFoods(value);
+            console.log(recipeData);
+        }
+    }
 }
 </script>
 
 <style>
+.c-app-heading
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
