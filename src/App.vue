@@ -2,8 +2,13 @@
   <div id="app">
     <Heading/>
     <Search @searchTermEvent="getRecipes"/>
-    <Recipe/>
+<!--
+    <div v-for="recipe in recipes" :key="recipe">
+        <Recipe/>
+    </div>
+-->
   </div>
+
 </template>
 
 <script>
@@ -16,7 +21,7 @@ export default {
     name: 'App',
     data() {
         return {
-            
+            recipes: {}
         }
     }, 
     components: {
@@ -26,8 +31,10 @@ export default {
     },
     methods: {
         getRecipes(value) {
-            const recipeData = getFoods(value);
-            console.log(recipeData);
+            const recipeResponse = getFoods(value);
+            recipeResponse.then((response) => {
+                this.recipes = response.hits;
+            })
         }
     }
 }
