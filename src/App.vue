@@ -5,6 +5,7 @@
     <div v-if="recipes">
         <div v-for="(recipe, index) in recipes" :key="index">
             <Recipe :recipe="recipe"/>
+            <beer-pairing :searchQuery="searchTerm"/>
         </div>
     </div>
   </div>
@@ -15,27 +16,30 @@
 import Recipe from './components/Recipe.vue';
 import Search from './components/Search.vue';
 import Heading from './components/Heading.vue';
+import BeerPairing from './components/BeerPairing.vue';
 import { getFoods } from './services/recipeApis';
 
 export default {
     name: 'App',
     data() {
         return {
-            recipes: {}
+            recipes: {},
+            searchTerm: ''
         }
     }, 
     components: {
         Recipe,
         Search,
-        Heading
+        Heading,
+        BeerPairing
     },
     methods: {
         getRecipes(value) {
+            this.searchTerm = value;
             const recipeResponse = getFoods(value);
             recipeResponse.then((response) => {
                 this.recipes = response.hits;
             })
-            console.log(this.recipes);
         }
     }
 }

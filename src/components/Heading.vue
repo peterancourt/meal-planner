@@ -2,6 +2,7 @@
     <div class="c-heading">
         <h1 class="c-heading--title">{{ title }}</h1>
         <h3 class="c-heading--sub-title">{{ subTitle }}</h3>
+        <h5 class="c-heading--api-info">{{ apiInfo }}</h5>
     </div>
 </template>
 
@@ -11,6 +12,7 @@ export default {
         return {
             title: 'Meal Planner',
             subTitle: 'Recipes and a Beer for Whatever You\'re in the Mood For',
+            apiInfo: 'Powered by Edamam and Punk APIs'
         }
     }
 }
@@ -27,6 +29,11 @@ export default {
         }
         
         &--sub-title {
+            font-family: Helvetica;
+            margin: auto;
+        }
+
+        &--api-info {
             font-family: Helvetica;
             margin: auto;
         }
