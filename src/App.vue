@@ -2,11 +2,11 @@
   <div id="app">
     <Heading/>
     <Search @searchTermEvent="getRecipes"/>
-<!--
-    <div v-for="recipe in recipes" :key="recipe">
-        <Recipe/>
+    <div v-if="recipes">
+        <div v-for="(recipe, index) in recipes" :key="index">
+            <Recipe :recipe="recipe"/>
+        </div>
     </div>
--->
   </div>
 
 </template>
@@ -35,6 +35,7 @@ export default {
             recipeResponse.then((response) => {
                 this.recipes = response.hits;
             })
+            console.log(this.recipes);
         }
     }
 }
