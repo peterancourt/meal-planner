@@ -3,7 +3,7 @@
     <Heading/>
     <Search @searchTermEvent="getRecipes"/>
     <div v-if="recipes">
-        <div v-for="(recipe, index) in recipes" :key="index">
+        <div class="o-grid-system c-container" v-for="(recipe, index) in recipes" :key="index">
             <Recipe :recipe="recipe"/>
             <beer-pairing :searchQuery="searchTerm"/>
         </div>
@@ -46,11 +46,17 @@ export default {
 </script>
 
 <style>
-.c-app-heading
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
+.o-grid-system {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-areas: "recipe recipe recipe recipe recipe beer beer";
+    grid-column-gap: 10px;
+}
+.c-container {
+    border: 1px #33D7FF solid;
+    border-radius: 25px;
+    background-color: #33D7FF;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 </style>
